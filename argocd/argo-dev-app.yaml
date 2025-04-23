@@ -9,16 +9,9 @@ spec:
     repoURL: https://github.com/Monu-nashtech-devops/ArgoCd-project.git
     targetRevision: HEAD
     path: overlays/dev
-  # For dev
-destination:
-  server: https://kubernetes.default.svc
-  namespace: dev
-
-# For prod
-destination:
-  server: https://kubernetes.default.svc
-  namespace: prod
-
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: dev     # 👈 Changed from 'default' to 'dev'
   syncPolicy:
     automated:
       prune: true
