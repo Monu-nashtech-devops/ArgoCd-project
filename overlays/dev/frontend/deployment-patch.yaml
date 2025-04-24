@@ -1,0 +1,13 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+spec:
+  template:
+    spec:
+      containers:
+        - name: frontend
+          image: mydockerhub/frontend:dev  # Dev-specific image tag
+          env:
+            - name: ENVIRONMENT
+              value: "dev"

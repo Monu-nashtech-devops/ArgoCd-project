@@ -1,0 +1,14 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+spec:
+  replicas: 3  # More replicas in prod
+  template:
+    spec:
+      containers:
+        - name: backend
+          image: mydockerhub/backend:prod  # Prod-specific image tag
+          env:
+            - name: ENVIRONMENT
+              value: "prod"

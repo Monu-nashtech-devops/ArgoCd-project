@@ -1,5 +1,4 @@
-namespace: prod
 resources:
-  - ../../base
-patchesStrategicMerge:
-  - replica-patch.yaml
+  - backend/
+  - frontend/
+namespace: prod

@@ -1,0 +1,13 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+spec:
+  template:
+    spec:
+      containers:
+        - name: backend
+          image: mydockerhub/backend:dev  # Dev-specific image tag
+          env:
+            - name: ENVIRONMENT
+              value: "dev"

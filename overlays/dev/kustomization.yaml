@@ -1,5 +1,4 @@
-namespace: dev
 resources:
-  - ../../base
-patchesStrategicMerge:
-  - replica-patch.yaml
+  - backend/
+  - frontend/
+namespace: dev
