@@ -14,9 +14,28 @@ spec:
     spec:
       containers:
         - name: backend
-          image: mydockerhub/backend:latest  # Change to your image
+          image: mydockerhub/backend:dev
+          # Critical fix: Command to keep container running
+          command: ["/bin/sh", "-c"]
+          args: 
+            - "your_server_start_command && 
+               echo 'Server running' && 
+               tail -f /dev/null"  # Prevents exit
           ports:
             - containerPort: 5000
+          # Add health checks
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 5000
+            initialDelaySeconds: 10
+            periodSeconds: 5
+          readinessProbe:
+            httpGet:
+              path: /ready
+              port: 5000
+            initialDelaySeconds: 5
+            periodSeconds: 3
           resources:
             requests:
               cpu: "100m"
@@ -24,3 +43,6 @@ spec:
             limits:
               cpu: "200m"
               memory: "256Mi"
+          env:
+            - name: ENVIRONMENT
+              value: "dev"
